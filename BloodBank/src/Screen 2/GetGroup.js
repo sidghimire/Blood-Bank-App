@@ -1,8 +1,17 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const GetGroup = ({navigation}) => {
+    const storeGroup=async()=>{
+        try{
+            await AsyncStorage.setItem('userBlood',btnData)
+        }catch(e){
+            console.log(e)
+        }
+    }
     const nextScreen=()=>{
         if(btnData!=""){
+            storeGroup()
             navigation.navigate("GetProfile")
         }
     }
