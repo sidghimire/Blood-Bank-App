@@ -6,7 +6,7 @@ const Dashboard = () => {
     return (
         <View>
             <TouchableOpacity onPress={() => signOut(auth)}>
-                <Text>Dashboard</Text>
+                <Text className="text-center">Dashboard</Text>
             </TouchableOpacity>
         </View>
     )
