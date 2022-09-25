@@ -1,3 +1,4 @@
+import { LogBox } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Welcome from './src/Screen 1/Welcome'
 import Login from './src/Screen 1/Login'
@@ -11,6 +12,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 const Stack = createNativeStackNavigator()
 const auth = getAuth()
 const App = () => {
+  LogBox.ignoreAllLogs();//Ignore all log notifications
+
 
   const [initializing, setInitializing] = useState(-1)
   onAuthStateChanged(auth, (user) => {

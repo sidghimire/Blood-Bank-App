@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator()
 const DashboardTabNav = ({navigation}) => {
     const CustomTab = () => {
         return (
-            <View className="bg-white h-20" style={{ backgroundColor: "#fff"}}>
+            <View className=" h-20 absolute w-full bottom-2" style={{ backgroundColor: "transparent"}}>
                 <View className="flex flex-row mx-5 px-5 rounded-full bg-gray-100">
                     <View className="flex-1">
                         <TouchableOpacity onPress={()=>navigation.navigate("Setting")} activeOpacity={0.8} className="my-auto">

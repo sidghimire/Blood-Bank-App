@@ -32,13 +32,13 @@ const GetProfile = ({ navigation }) => {
 
     const nextScreen = async() => {
         const user=auth.currentUser
-        console.log(userBlood,fullName, age, location, frequency)
         if (userBlood != "" && fullName != "" && age != "" && location != "" && frequency != "") {
             await setDoc(doc(db,'userProfile',user.uid),{
                 fullName:fullName,
                 age:age,
                 location:location,
-                frequency:frequency
+                frequency:frequency,
+                userBlood:userBlood
             }).then((res)=>{
                 navigation.reset({
                     index: 0,
