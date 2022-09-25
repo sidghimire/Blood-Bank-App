@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Dashboard from './Screen 2/Dashboard'
+import DashboardTabNav from './DashboardTabNav'
 import GetInfo from './GetInfo'
 import SplashScreen from './SplashScreen'
 import { NavigationContainer } from '@react-navigation/native'
@@ -34,14 +35,14 @@ const App = () => {
     return (
       <Stack.Navigator>
           <Stack.Screen name='GetInfo' options={{ headerShown: false }} component={GetInfo} />
-          <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={Dashboard} />
+          <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={DashboardTabNav} />
       </Stack.Navigator>
     )
   }
   if (initializing == 1) {
     return (
       <Stack.Navigator>
-        <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={Dashboard} />
+        <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={DashboardTabNav} />
       </Stack.Navigator>
     )
   }
