@@ -22,7 +22,7 @@ const Welcome = ({navigation}) => {
 
             <View className="flex flex-row p-10">
                 <TouchableHighlight className="flex-1">
-                    <Text className="tracking-widest text-base text-white text-right">Learn More</Text>
+                    <Text className="tracking-widest text-base text-white text-right">Learn More...</Text>
                 </TouchableHighlight>
                 
             </View>
