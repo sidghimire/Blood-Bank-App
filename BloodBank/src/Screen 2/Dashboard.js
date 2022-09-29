@@ -2,6 +2,8 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Dashboard = ({navigation}) => {
+    const [btnData, setBtnData] = useState("")
+
     const storeGroup=async()=>{
         try{
             await AsyncStorage.setItem('userBlood',btnData)
@@ -12,10 +14,9 @@ const Dashboard = ({navigation}) => {
     const nextScreen=()=>{
         if(btnData!=""){
             storeGroup()
-            navigation.navigate("GetProfile")
+            navigation.navigate("", {'bloodGrounp':btnData})
         }
     }
-    const [btnData, setBtnData] = useState("")
     const toggleGroup = (data) => {
         if (data == "") {
             setBtnData("")

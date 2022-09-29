@@ -1,10 +1,21 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
+import {getAuth,signOut} from 'firebase/auth'
+
+const auth=getAuth()
 
 const Setting = () => {
+  const logout=()=>{
+    signOut(auth)
+  }
   return (
     <View>
-      <Text>Setting</Text>
+      <TouchableOpacity onPress={logout} className="h-10 flex-1 rounded-full m-4 bg-black">
+        <Text className="text-white my-auto text-center">
+          Logout
+        </Text>
+      </TouchableOpacity>
+
     </View>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import Dashboard from './Screen 2/Dashboard'
+import DashboardStack from './DashboardStack'
 import Location from './Screen 2/Location'
 import Share from './Screen 2/Share'
 import Profile from './Screen 2/Profile'
@@ -36,7 +36,7 @@ const DashboardTabNav = ({navigation}) => {
                         </TouchableOpacity>
                     </View>
                     <View className="flex-1 mx-2">
-                        <TouchableOpacity onPress={()=>navigation.navigate("Dashboard")} activeOpacity={0.8} className="relative rounded-full w-20 h-20 mx-auto bg-white bottom-4" style={{backgroundColor:"#D70032"}}>
+                        <TouchableOpacity onPress={()=>navigation.navigate("DashboardStack")} activeOpacity={0.8} className="relative rounded-full w-20 h-20 mx-auto bg-white bottom-4" style={{backgroundColor:"#D70032"}}>
                             <Icon
                                 style={{marginTop:'auto',marginBottom:'auto',marginLeft:'auto',marginRight:'auto'}}
                                 name="water"
