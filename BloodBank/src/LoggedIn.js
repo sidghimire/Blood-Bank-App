@@ -9,6 +9,7 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore/lite'
 import { getAuth } from 'firebase/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ViewProfile from './Screen 2/ViewProfile'
+import ChangeLocation from './Screen 2/ChangeLocation'
 
 const Stack = createNativeStackNavigator()
 const db = getFirestore();
@@ -51,6 +52,8 @@ const App = () => {
         <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={DashboardTabNav} />
         <Stack.Screen name='FindDonor' options={{ headerShown: false }} component={FindDonor} />
         <Stack.Screen name='ViewProfile' options={{ headerShown: false }} component={ViewProfile} />
+        <Stack.Screen name='ChangeLocation' options={{ headerShown: false }} component={ChangeLocation} />
+        
       </Stack.Navigator>
     )
   }
@@ -60,6 +63,7 @@ const App = () => {
         <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={DashboardTabNav} />
         <Stack.Screen name='FindDonor' options={{ headerShown: false }} component={FindDonor} />
         <Stack.Screen name='ViewProfile' options={{ headerShown: false }} component={ViewProfile} />
+        <Stack.Screen name='ChangeLocation' options={{ headerShown: false }} component={ChangeLocation} />
       </Stack.Navigator>
     )
   }

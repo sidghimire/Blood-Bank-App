@@ -9,7 +9,7 @@ import Avatar2 from '../../assets/avatar/avatar2.png'
 const auth = getAuth()
 const db = getFirestore()
 
-const Setting = () => {
+const Setting = ({ navigation }) => {
   const logout = () => {
     signOut(auth)
   }
@@ -86,8 +86,8 @@ const Setting = () => {
   }
 
 
-  const changeLocation=()=>{
-    
+  const changeLocation = () => {
+    navigation.navigate("ChangeLocation")
   }
 
   useEffect(() => {
@@ -99,15 +99,24 @@ const Setting = () => {
       <View className="m-4 bg-gray-100 p-8 rounded-3xl flex flex-col ">
         <Image source={Avatar2} className="mx-auto w-20 h-20 rounded-full" />
         <Text className="text-center text-2xl font-semibold text-black m-5 mb-2">{fullName}</Text>
-        <Text className="text-center text-sm font-light text-black ">siddharthaghimire@gmail.com</Text>
-        <TouchableOpacity className=' bg-green-800 rounded-full p-3 m-1 w-1/2 mx-auto flex flex-row' onPress={changeLocation}>
-          <Icon
-            name="location"
-            color="#fff"
-            size={20}
-          />
-          <Text className="text-center text-sm text-white my-auto flex-1">Change Location</Text>
-        </TouchableOpacity>
+        <Text className="text-center text-sm font-light text-black ">{auth.currentUser.email}</Text>
+        <View className="flex flex-row">
+          <TouchableOpacity className=' bg-green-800 rounded-full p-3 m-1 w-1/2 mx-auto flex flex-row' onPress={changeLocation}>
+            <Icon
+              name="location"
+              color="#fff"
+              size={20}
+            />
+            <Text className="text-center text-sm text-white my-auto flex-1">Change Location</Text>
+          </TouchableOpacity>
+          <TouchableOpacity className=' rounded-full p-3 m-1 mx-10 flex flex-row'  style={{backgroundColor:'#A70000'}} onPress={logout}>
+            <Icon
+              name="log-out"
+              color="#fff"
+              size={20}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View className="flex flex-row px-8">

@@ -2,18 +2,18 @@ import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'r
 import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {doc,setDoc,getFirestore} from 'firebase/firestore/lite'
-import {getAuth} from 'firebase/auth'
+import { doc, setDoc, getFirestore } from 'firebase/firestore/lite'
+import { getAuth } from 'firebase/auth'
 import "../../firebaseConfig"
-const db=getFirestore()
-const auth=getAuth()
+const db = getFirestore()
+const auth = getAuth()
 
 const GetProfile = ({ navigation }) => {
-    const [userBlood,setUserBlood]=useState("")
-    const [fullName,setFullName]=useState("")
-    const [age,setAge]=useState("")
-    const [location,setLocation]=useState("")
-    const [frequency,setFrequency]=useState("")
+    const [userBlood, setUserBlood] = useState("")
+    const [fullName, setFullName] = useState("")
+    const [age, setAge] = useState("")
+    const [location, setLocation] = useState("")
+    const [frequency, setFrequency] = useState("")
 
     const getData = async () => {
         try {
@@ -30,24 +30,35 @@ const GetProfile = ({ navigation }) => {
         getData()
     }, [])
 
-    const nextScreen = async() => {
-        const user=auth.currentUser
+    const nextScreen = async () => {
+        const user = auth.currentUser
         if (userBlood != "" && fullName != "" && age != "" && location != "" && frequency != "") {
-            await setDoc(doc(db,'userProfile',user.uid),{
-                fullName:fullName,
-                age:age,
-                location:location,
-                frequency:frequency,
-                userBlood:userBlood
-            }).then((res)=>{
+            await setDoc(doc(db, 'userProfile', user.uid), {
+                fullName: fullName,
+                age: age,
+                location: location,
+                frequency: frequency,
+                userBlood: userBlood
+            }).then(async (res) => {
+                try {
+                    await AsyncStorage.setItem('fullName', fullName)
+                    await AsyncStorage.setItem('age', age)
+                    await AsyncStorage.setItem('frequency', location)
+                    await AsyncStorage.setItem('location', frequency)
+                    await AsyncStorage.setItem('userBlood', userBlood)
+                    getLocalStorage()
+
+                } catch (e) {
+                    console.log(e)
+                }
                 navigation.reset({
                     index: 0,
                     routes: [{ name: 'DashboardTab' }],
-                  });
+                });
             })
         }
     }
-   
+
     return (
         <View className="flex h-full flex-col p-5 pt-12  bg-white" >
             <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.goBack()} className="absolute top-3 left-3">
