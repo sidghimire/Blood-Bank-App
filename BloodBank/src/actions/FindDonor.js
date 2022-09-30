@@ -22,33 +22,55 @@ const LoadingScreen = () => {
 
 
 
-const MainScreen = ({ userData, navigation }) => {
+const MainScreen = ({ userData, navigation, bloodGroup }) => {
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate("ViewProfile",{id:item.id})} className="rounded-lg p-5 mx-7 my-5 bg-gray-100 flex flex-row" >
-        <Image source={Avatar} className="w-16 h-16" />
-        <View className="flex-1 flex flex-col">
-          <Text className="text-black font-bold text-xl my-auto px-10 uppercase">{item.fullname}</Text>
-          <Text className="text-gray-600 font-bold text-sm my-auto px-10 uppercase">Age: {item.age}</Text>
-          <Text className="text-gray-600 font-bold my-auto px-10 uppercase" style={{ fontSize: 12 }}>{item.location}</Text>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate("ViewProfile", { id: item.id })} className="rounded-lg p-2 mx-7 my-1 py-4 bg-gray-100 flex flex-row" >
+        <View className='flex flex-col'>
+          <Image source={Avatar} className="w-12 h-12 my-auto mx-auto" />
+          <Text className="text-gray-600 font-normal text-sm my-auto px-5 uppercase">Age: {item.age}</Text>
+
         </View>
-        <View className="w-10 h-10 my-auto" style={{ backgroundColor: '#DF4843' }}>
-          <Text className="my-auto mx-auto text-white">{item.userBlood}</Text>
+        <View className="flex-1 flex flex-col">
+          <Text className="text-black font-bold text-base my-auto px-5 uppercase">{item.fullname}</Text>
+          <Text className="text-gray-600 font-bold my-auto px-5 uppercase" style={{ fontSize: 12 }}>{item.location}</Text>
+        </View>
+        <View className='flex flex-col'>
+          <View className="w-10 h-10 my-auto" style={{ backgroundColor: '#DF4843' }}>
+            <Text className="my-auto mx-auto text-white">{item.userBlood}</Text>
+          </View>
+          <TouchableOpacity activeOpacity={0.9} className="w-10 h-10 my-2 rounded-full" style={{ backgroundColor: '#376140' }} onPress={()=>navigation.navigate('MapById',{id:item.id})}>
+            <Icon
+              name="planet"
+              color="#fff"
+              size={20}
+              style={{marginLeft:'auto',marginRight:'auto',marginTop:'auto',marginBottom:'auto'}}
+            />
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>)
   };
 
-
   return (
     <SafeAreaView className="flex-1">
-      <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.goBack()}>
-        <Icon
-          style={{ margin: 10 }}
-          name="arrow-back"
-          color="#000"
-          size={30}
-        />
-      </TouchableOpacity>
+      <View className="flex flex-row">
+        <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.goBack()}>
+          <Icon
+            style={{ margin: 10 }}
+            name="arrow-back"
+            color="#000"
+            size={30}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.9} className="ml-auto" onPress={() => navigation.navigate("MapBySearch", { bloodGroup: bloodGroup })}>
+          <Icon
+            style={{ margin: 10 }}
+            name="map"
+            color="#000"
+            size={30}
+          />
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={userData}
         renderItem={renderItem}
@@ -101,7 +123,7 @@ const FindDonor = ({ route, navigation }) => {
       {loading ?
         <LoadingScreen />
         :
-        <MainScreen userData={userData} navigation={navigation} />
+        <MainScreen userData={userData} navigation={navigation} bloodGroup={bloodGroup} />
       }
 
     </View>

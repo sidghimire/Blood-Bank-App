@@ -10,6 +10,8 @@ import { getAuth } from 'firebase/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ViewProfile from './Screen 2/ViewProfile'
 import ChangeLocation from './Screen 2/ChangeLocation'
+import MapBySearch from './Screen 2/MapBySearch'
+import MapById from './Screen 2/MapById'
 
 const Stack = createNativeStackNavigator()
 const db = getFirestore();
@@ -53,6 +55,8 @@ const App = () => {
         <Stack.Screen name='FindDonor' options={{ headerShown: false }} component={FindDonor} />
         <Stack.Screen name='ViewProfile' options={{ headerShown: false }} component={ViewProfile} />
         <Stack.Screen name='ChangeLocation' options={{ headerShown: false }} component={ChangeLocation} />
+        <Stack.Screen name='MapBySearch' options={{ headerShown: false }} component={MapBySearch} />
+        <Stack.Screen name='MapById' options={{ headerShown: false }} component={MapById} />
         
       </Stack.Navigator>
     )
@@ -64,6 +68,8 @@ const App = () => {
         <Stack.Screen name='FindDonor' options={{ headerShown: false }} component={FindDonor} />
         <Stack.Screen name='ViewProfile' options={{ headerShown: false }} component={ViewProfile} />
         <Stack.Screen name='ChangeLocation' options={{ headerShown: false }} component={ChangeLocation} />
+        <Stack.Screen name='MapBySearch' options={{ headerShown: false }} component={MapBySearch} />
+        <Stack.Screen name='MapById' options={{ headerShown: false }} component={MapById} />
       </Stack.Navigator>
     )
   }
