@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import Dashboard from './Screen 2/Dashboard'
-import FindDonor from './actions/FindDonor'
+
+import Setting from './Screen 2/Setting'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 const Stack = createNativeStackNavigator()
-const DashboardStack = () => {
+const SettingStack = () => {
 
     return (
         <Stack.Navigator>
-            <Stack.Screen name='Dashboard' options={{ headerShown: false }} component={Dashboard} />
+            <Stack.Screen name='Setting' options={{ headerShown: false }} component={Setting} />
         </Stack.Navigator>
     )
 
 }
 
-export default DashboardStack
+export default SettingStack

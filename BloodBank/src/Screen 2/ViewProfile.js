@@ -1,76 +1,54 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { collection, doc, getDoc, query, where, getFirestore } from 'firebase/firestore/lite'
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import Avatar2 from '../../assets/avatar/avatar2.png'
-const Profile = () => {
+
+
+const db=getFirestore()
+
+const ViewProfile = ({ route, navigation }) => {
+    const {id}=route.params;
     const [fullName, setFullName] = useState("");
     const [phoneNumber, setPhone] = useState("9844442363");
     const [age, setAge] = useState("");
     const [frequency, setFrequency] = useState("");
     const [location, setLocation] = useState("");
     const [userBlood, setUserBlood] = useState("");
-    const getLocalStorage = async () => {
-        try {
-            const blood = await AsyncStorage.getItem('userBlood');
-            if (blood != null) {
-                setUserBlood(blood)
-            }
-            const name = await AsyncStorage.getItem('fullName');
-            if (name != null) {
-                setFullName(name)
-            }
-            const lAge = await AsyncStorage.getItem('age');
-            if (lAge != null) {
-                setAge(lAge)
-            }
-            const frequency = await AsyncStorage.getItem('frequency');
-            if (frequency != null) {
-                setFrequency(frequency)
-            }
-            const location = await AsyncStorage.getItem('location');
-            if (location != null) {
-                setLocation(location)
-            }
 
-        } catch (e) {
-            // error reading value
-        }
+
+    const getData = async() => {
+        const profileRef = doc(db, "userProfile",id)
+        const querySnapshot = await getDoc(profileRef)
+        const data=querySnapshot.data()
+        setAge(data['age'])
+        setFullName(data['fullName'])
+        setUserBlood(data['userBlood'])
     }
+
+
     useEffect(() => {
-        getLocalStorage()
+        getData()
     }, [])
 
     return (
         <View className="h-full bg-white flex flex-col">
-            <View className="flex flex-row p-5  ">
+            <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.goBack()}>
                 <Icon
-                    name="water"
-                    color="#D70032"
-                    size={50}
+                    style={{ margin: 10 }}
+                    name="arrow-back"
+                    color="#000"
+                    size={30}
                 />
-                <Text className="my-auto font-bold text-2xl text-black">B-Bank</Text>
-                <TouchableOpacity style={{ marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto' }}>
-                    <Icon  
-                        name="book"
-                        color="#000"
-                        size={30}
-                    />
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
+
             <View className="mx-auto rounded-full p-1 mt-5" style={{ borderWidth: 3, borderColor: '#E8A94C', borderStyle: 'dashed' }}>
                 <Image className="w-40 h-40 rounded-full" source={Avatar2} />
             </View>
-            <TouchableOpacity className="bg-black w-11 h-11 rounded-full mx-auto relative bottom-7 p-2" style={{ borderWidth: 2, borderColor: '#fff' }}>
-                <Icon
-                    style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}
-                    name="brush-outline"
-                    color="#fff"
-                    size={20}
-                />
-            </TouchableOpacity>
-            <View className="flex flex-row relative bottom-0 mb-10">
+            
+            <View className="flex flex-row relative bottom-0 mb-10 mt-7">
                 <View className="w-12 h-12 rounded ml-auto mr-1 " style={{ backgroundColor: "#EB7B7E" }} >
                     <Text className="text-white mx-auto my-auto text-xl font-bold ">{userBlood}</Text>
                 </View>
@@ -84,6 +62,9 @@ const Profile = () => {
                 </Text>
                 <Text className="text-center text-gray-500 mt-2 font-semibold text-base">
                     {phoneNumber}
+                </Text>
+                <Text className="text-center text-gray-500 mt-2 font-semibold text-base">
+                    {location}
                 </Text>
             </View>
 
@@ -135,14 +116,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
-/*
-<TouchableOpacity className="bg-black w-11 h-11 rounded-full mx-auto relative bottom-7 p-2" style={{ borderWidth: 2, borderColor: '#fff' }}>
-                <Icon
-                    style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}
-                    name="brush-outline"
-                    color="#fff"
-                    size={20}
-                />
-            </TouchableOpacity>
-            */
+export default ViewProfile

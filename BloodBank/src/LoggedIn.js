@@ -3,10 +3,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import DashboardTabNav from './DashboardTabNav'
 import GetInfo from './GetInfo'
 import SplashScreen from './SplashScreen'
+import FindDonor from './actions/FindDonor'
 import { NavigationContainer } from '@react-navigation/native'
 import { doc, getDoc, getFirestore } from 'firebase/firestore/lite'
 import { getAuth } from 'firebase/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ViewProfile from './Screen 2/ViewProfile'
 
 const Stack = createNativeStackNavigator()
 const db = getFirestore();
@@ -47,6 +49,8 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name='GetInfo' options={{ headerShown: false }} component={GetInfo} />
         <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={DashboardTabNav} />
+        <Stack.Screen name='FindDonor' options={{ headerShown: false }} component={FindDonor} />
+        <Stack.Screen name='ViewProfile' options={{ headerShown: false }} component={ViewProfile} />
       </Stack.Navigator>
     )
   }
@@ -54,6 +58,8 @@ const App = () => {
     return (
       <Stack.Navigator>
         <Stack.Screen name='DashboardTab' options={{ headerShown: false }} component={DashboardTabNav} />
+        <Stack.Screen name='FindDonor' options={{ headerShown: false }} component={FindDonor} />
+        <Stack.Screen name='ViewProfile' options={{ headerShown: false }} component={ViewProfile} />
       </Stack.Navigator>
     )
   }

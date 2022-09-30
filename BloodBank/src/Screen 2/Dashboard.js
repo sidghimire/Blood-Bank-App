@@ -14,7 +14,7 @@ const Dashboard = ({navigation}) => {
     const nextScreen=()=>{
         if(btnData!=""){
             storeGroup()
-            navigation.navigate("", {'bloodGrounp':btnData})
+            navigation.navigate("FindDonor", {'bloodGroup':btnData})
         }
     }
     const toggleGroup = (data) => {
