@@ -46,7 +46,7 @@ const MapById = ({ navigation, route }) => {
                 <Icon
                     style={{ margin: 10 }}
                     name="arrow-back"
-                    color="#fff"
+                    color="#ffffff"
                     size={30}
                 />
             </TouchableOpacity>
